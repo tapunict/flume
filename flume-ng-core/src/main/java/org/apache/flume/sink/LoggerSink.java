@@ -28,6 +28,7 @@ import org.apache.flume.conf.Configurable;
 import org.apache.flume.event.EventHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.apache.flume.conf.MaxBytesToLog;
 
 /**
  * <p>
@@ -85,6 +86,7 @@ public class LoggerSink extends AbstractSink implements Configurable {
     Channel channel = getChannel();
     Transaction transaction = channel.getTransaction();
     Event event = null;
+    maxBytesToLog = MaxBytesToLog.getInstance().readMaxBytesToLog();
 
     try {
       transaction.begin();
